@@ -14,7 +14,9 @@ repositories {
 
 dependencies {
     val komodoVersion = "0.0.2-development-75"
-    implementation("io.heapy.komodo:komodo-config-dotenv:$komodoVersion")
+    implementation("io.heapy.komodo:komodo-config-dotenv:$komodoVersion") {
+        exclude("org.jetbrains.kotlinx")
+    }
 
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.0.0")
 }
