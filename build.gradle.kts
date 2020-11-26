@@ -18,6 +18,7 @@ dependencies {
         exclude("org.jetbrains.kotlinx")
     }
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.0.0")
     implementation("ch.qos.logback:logback-classic:1.2.3")
 }
