@@ -1,6 +1,7 @@
 package uz.dkamaloff.uzdroidbot
 
 import uz.dkamaloff.uzdroidbot.configuration.DefaultAppConfiguration
+import uz.dkamaloff.uzdroidbot.utils.logger
 
 /**
  * Entry point of bot.
@@ -9,14 +10,18 @@ import uz.dkamaloff.uzdroidbot.configuration.DefaultAppConfiguration
  */
 object Application {
 
+    private val LOGGER = logger<Application>()
+
     @JvmStatic
     fun main(args: Array<String>) {
         try {
             val appConfiguration = DefaultAppConfiguration()
             val bot = UzDroidBot(appConfiguration.token)
             bot.startPolling()
+
+            LOGGER.info("Bot started.")
         } catch (e: Exception) {
-            e.printStackTrace()
+            LOGGER.error("Error in bot.", e)
         }
     }
 }

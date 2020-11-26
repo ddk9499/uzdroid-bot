@@ -19,6 +19,7 @@ dependencies {
     }
 
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.0.0")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 
 tasks.withType<KotlinCompile>() {
