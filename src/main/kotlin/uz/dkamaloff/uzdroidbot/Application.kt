@@ -16,8 +16,11 @@ object Application {
     fun main(args: Array<String>) {
         try {
             val appConfiguration = DefaultAppConfiguration()
+            val shutdownManager = DefaultShutdownManager()
+
             val bot = UzDroidBot(appConfiguration.token)
             bot.startPolling()
+            shutdownManager.onShutdown { bot.stopPolling() }
 
             LOGGER.info("Bot started.")
         } catch (e: Exception) {
