@@ -1,9 +1,8 @@
-package uz.dkamaloff.uzdroidbot
+package uz.dkamaloff.uzdroidbot.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import uz.dkamaloff.uzdroidbot.utils.logger
 import kotlin.concurrent.thread
 
 /**
