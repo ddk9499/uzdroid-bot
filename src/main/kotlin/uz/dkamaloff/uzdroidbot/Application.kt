@@ -1,5 +1,7 @@
 package uz.dkamaloff.uzdroidbot
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import uz.dkamaloff.uzdroidbot.configuration.DefaultAppConfiguration
 import uz.dkamaloff.uzdroidbot.utils.logger
 
@@ -17,8 +19,9 @@ object Application {
         try {
             val appConfiguration = DefaultAppConfiguration()
             val shutdownManager = DefaultShutdownManager()
+            val appScope = CoroutineScope(SupervisorJob())
 
-            val bot = UzDroidBot(appConfiguration.token)
+            val bot = UzDroidBot(appConfiguration.token, appScope)
             bot.startPolling()
             shutdownManager.onShutdown { bot.stopPolling() }
 
