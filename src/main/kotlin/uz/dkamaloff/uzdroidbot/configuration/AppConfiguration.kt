@@ -1,9 +1,11 @@
 package uz.dkamaloff.uzdroidbot.configuration
 
-import io.heapy.komodo.config.dotenv.Dotenv
-import java.nio.file.Paths
+import io.github.cdimascio.dotenv.dotenv
 
-private val env = Dotenv(Paths.get("./devops/.env"))
+
+private val env = dotenv {
+    directory = "./devops/.env"
+}
 
 /**
  * Application Configuration.
