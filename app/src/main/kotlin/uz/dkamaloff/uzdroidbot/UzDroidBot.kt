@@ -16,16 +16,17 @@ import uz.dkamaloff.uzdroidbot.datasource.service.CaptchaService
 import uz.dkamaloff.uzdroidbot.handlers.CallbackQueryHandler
 import uz.dkamaloff.uzdroidbot.handlers.DefaultMessageHandler
 import uz.dkamaloff.uzdroidbot.handlers.JoinLeftHandler
+import uz.dkamaloff.uzdroidbot.handlers.MessageHandler
 import uz.dkamaloff.uzdroidbot.utils.showAlert
 
 @Suppress("FunctionName")
 fun UzDroidBot(botToken: String, appScope: CoroutineScope): Bot {
     val repository: Repository = RepositoryImpl()
-    val captchaService = CaptchaService(repository)
+    val captchaService: CaptchaService = CaptchaService(repository)
 
-    val joinLeftHandler = JoinLeftHandler(appScope, captchaService)
-    val defaultMessageHandler = DefaultMessageHandler(appScope, repository)
-    val callbackQueryHandler = CallbackQueryHandler(appScope, captchaService)
+    val joinLeftHandler: MessageHandler = JoinLeftHandler(appScope, captchaService)
+    val defaultMessageHandler: MessageHandler = DefaultMessageHandler(appScope, repository)
+    val callbackQueryHandler: CallbackQueryHandler = CallbackQueryHandler(appScope, captchaService)
 
     return bot {
         token = botToken
@@ -33,6 +34,7 @@ fun UzDroidBot(botToken: String, appScope: CoroutineScope): Bot {
         dispatch {
             command("hello") {
                 appScope.launch {
+                    bot.deleteMessage(ChatId.fromId(message.chat.id), message.messageId)
                     bot.showAlert(ChatId.fromId(message.chat.id), "Hello ${message.from?.firstName}")
                 }
             }
