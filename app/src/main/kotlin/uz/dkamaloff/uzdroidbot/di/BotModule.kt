@@ -3,12 +3,14 @@ package uz.dkamaloff.uzdroidbot.di
 import com.github.kotlintelegrambot.Bot
 import com.github.kotlintelegrambot.bot
 import com.github.kotlintelegrambot.dispatch
+import com.github.kotlintelegrambot.dispatcher.callbackQuery
 import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.dispatcher.message
 import com.github.kotlintelegrambot.dispatcher.telegramError
 import dagger.Module
 import dagger.Provides
 import io.vertx.core.DeploymentOptions
+import uz.dkamaloff.uzdroidbot.handler.CallbackQueryHandlerHandler
 import uz.dkamaloff.uzdroidbot.handler.CommandHandler
 import uz.dkamaloff.uzdroidbot.handler.MessageHandler
 import uz.dkamaloff.uzdroidbot.utils.logger
@@ -25,6 +27,7 @@ object BotModule {
         deploymentOptions: DeploymentOptions,
         messageHandler: MessageHandler,
         commandHandler: CommandHandler,
+        callbackQueryHandlerHandler: CallbackQueryHandlerHandler,
     ): Bot = bot {
         token = deploymentOptions
             .config
@@ -34,6 +37,7 @@ object BotModule {
         dispatch {
             command("start", commandHandler.handleStart)
             message(messageHandler)
+            callbackQuery(handleCallbackQuery = callbackQueryHandlerHandler)
             telegramError { log.error(error.getErrorMessage()) }
         }
     }

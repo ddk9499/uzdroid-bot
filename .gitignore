@@ -6,6 +6,7 @@ out
 # Gradle
 .gradle
 build
+/app/src/main/resources/bot.json
 
 # Configuration
 /devops/.env
