@@ -6,12 +6,11 @@ import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.dispatcher.message
 import com.github.kotlintelegrambot.dispatcher.telegramError
-import com.github.kotlintelegrambot.extensions.filters.Filter
 import dagger.Module
 import dagger.Provides
 import io.vertx.core.DeploymentOptions
 import uz.dkamaloff.uzdroidbot.handler.CommandHandler
-import uz.dkamaloff.uzdroidbot.handler.TextHandler
+import uz.dkamaloff.uzdroidbot.handler.MessageHandler
 import uz.dkamaloff.uzdroidbot.utils.logger
 import javax.inject.Singleton
 
@@ -24,7 +23,7 @@ object BotModule {
     @[Provides Singleton]
     fun provideBot(
         deploymentOptions: DeploymentOptions,
-        textHandler: TextHandler,
+        messageHandler: MessageHandler,
         commandHandler: CommandHandler,
     ): Bot = bot {
         token = deploymentOptions
@@ -34,7 +33,7 @@ object BotModule {
 
         dispatch {
             command("start", commandHandler.handleStart)
-            message(textHandler.handleMessage)
+            message(messageHandler)
             telegramError { log.error(error.getErrorMessage()) }
         }
     }

@@ -15,3 +15,8 @@ fun logger(): ReadOnlyProperty<Any, Logger> = ReadOnlyProperty { thisRef, _ ->
 
 @ExtensionMarker
 inline fun <reified T> logger(): Logger = LoggerFactory.getLogger(T::class.java.canonicalName)
+
+@ExtensionMarker
+inline fun <T> notnull(value: T?, body: (T) -> Unit) {
+    if (value != null) body(value)
+}

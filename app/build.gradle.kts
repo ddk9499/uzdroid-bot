@@ -9,14 +9,10 @@ plugins {
 group = "uz.dkamaloff"
 version = "0.0.1"
 
-repositories {
-    jcenter()
-    maven(url = "https://jitpack.io")
-    maven { url = uri("https://dl.bintray.com/heapy/heap-dev") }
-}
 
 dependencies {
     implementation(Deps.Kotlin.coroutines)
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.0.4")
 }
 

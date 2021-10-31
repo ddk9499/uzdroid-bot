@@ -1,6 +1,13 @@
 {
   "PORT": 8081,
+  "POSTGRES": {
+    "PORT": 5432,
+    "HOST": "localhost",
+    "USER": "adkhambek",
+    "PASS": "12345",
+    "NAME": "uzdroid_bot"
+  },
   "BOT": {
-    "TOKEN" : ""
+    "TOKEN" : "1758482625:AAE9XvY4jsIvuOffQagzgrFTCHSQiU5oQvU"
   }
 }

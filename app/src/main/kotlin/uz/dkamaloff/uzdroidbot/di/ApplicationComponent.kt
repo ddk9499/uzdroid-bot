@@ -12,6 +12,7 @@ import javax.inject.Singleton
         VertxModule::class,
         BotModule::class,
         VerticleModule::class,
+        DatabaseModule::class,
         CoroutinesModule::class,
     ]
 )]
