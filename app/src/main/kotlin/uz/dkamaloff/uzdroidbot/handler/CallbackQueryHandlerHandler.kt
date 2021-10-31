@@ -14,10 +14,10 @@ class CallbackQueryHandlerHandler @Inject constructor(
 
     override fun invoke(env: CallbackQueryHandlerEnvironment) {
         coroutineScope.launch {
-            val callbackData = env.callbackQuery.data
-            val isAskNewCaptcha = callbackData.matches("^resend:captcha:userId:\\d+".toRegex())
-            val chatID = env.callbackQuery.message?.chat?.id ?: return@launch
             val bot = env.bot
+            val callbackData = env.callbackQuery.data
+            val chatID = env.callbackQuery.message?.chat?.id ?: return@launch
+            val isAskNewCaptcha = callbackData.matches("^resend:captcha:userId:\\d+".toRegex())
 
             if (isAskNewCaptcha) {
                 utilService.newCaptcha(bot, ChatId.fromId(chatID), env.callbackQuery.from)
