@@ -17,7 +17,8 @@ class CallbackQueryHandler(
             val chatID = env.callbackQuery.message?.chat?.id ?: return@launch
             val isAskNewCaptcha = callbackData.matches("^resend:captcha:userId:\\d+".toRegex())
 
-            if (isAskNewCaptcha) {
+            val lastInfo = captchaService.getLastCaptchaInfo(callbackQuery.from.id)
+            if (isAskNewCaptcha && lastInfo != null) {
                 captchaService.newCaptcha(bot, ChatId.fromId(chatID), env.callbackQuery.from)
             }
         }
