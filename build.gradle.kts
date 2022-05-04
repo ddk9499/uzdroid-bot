@@ -4,8 +4,11 @@ plugins {
     application
     kotlin("jvm") version "1.5.31"
 }
-group = "uz.dkamaloff"
-version = "0.0.1"
+
+application {
+    applicationName = "UzDroidBot"
+    mainClass.set("uz.dkamaloff.uzdroidbot.Application")
+}
 
 repositories {
     mavenCentral()
