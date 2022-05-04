@@ -1,9 +1,8 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     kotlin("jvm") version "1.5.31"
-    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 group = "uz.dkamaloff"
 version = "0.0.1"
@@ -22,18 +21,4 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
-}
-
-val shadowJar: ShadowJar by tasks
-shadowJar.apply {
-    manifest.attributes.apply {
-        put("Implementation-Version", "1.0.0")
-        put("Main-Class", "uz.dkamaloff.uzdroidbot.Application")
-    }
-
-    archiveBaseName.set(project.name)
-    archiveBaseName.convention(project.name)
-
-    archiveVersion.set("")
-    archiveVersion.convention("")
 }
